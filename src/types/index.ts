@@ -6,6 +6,7 @@ export interface Rate {
     distance_km: number
     ft40_round: number
     ft20_round: number
+    trip_type: string
 }
 
 export interface Region {

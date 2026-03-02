@@ -1,6 +1,8 @@
 import { Hono } from 'hono'
 import type { Context } from 'hono'
 import { cors } from 'hono/cors'
+import { z } from 'zod'
+import { zValidator } from '@hono/zod-validator'
 
 interface Env {
   DB: D1Database
@@ -10,12 +12,25 @@ interface Env {
   ADMIN_TOKEN_SECRET?: string
 }
 
-interface CompanyBody {
-  name: string
-  sido: string
-  sigungu?: string
-  eupmyeondong?: string
-}
+// ─── 입력값 검증 스키마 (Zod) ───────────────────────────
+const companySchema = z.object({
+  name: z.string()
+    .min(1, '업체명은 필수입니다.')
+    .max(100, '업체명은 100자 이내여야 합니다.')
+    .trim(),
+  sido: z.string()
+    .min(1, '시도는 필수입니다.')
+    .max(20, '시도 이름이 너무 깁니다.')
+    .trim(),
+  sigungu: z.string()
+    .max(30, '시군구 이름이 너무 깁니다.')
+    .optional()
+    .default(''),
+  eupmyeondong: z.string()
+    .max(30, '읍면동 이름이 너무 깁니다.')
+    .optional()
+    .default(''),
+})
 
 interface Variables {
   adminLoginVerified?: boolean
@@ -286,7 +301,7 @@ app.use('/api/admin/*', async (c, next) => {
   return next()
 })
 
-// ─── 관리자 로그인 검증 ──────────────────────────────────
+// ─── 관리자 로그인 ──────────────────────────────────────
 app.post('/api/admin/login', async (c) => {
   if (!c.get('adminLoginVerified')) {
     return c.json({ error: '인증 실패' }, 401)
@@ -296,10 +311,17 @@ app.post('/api/admin/login', async (c) => {
   return c.json({ success: true, token, expiresIn: ADMIN_TOKEN_TTL_SECONDS })
 })
 
-// ─── 관리자 로그인 검증 ──────────────────────────────────
-app.post('/api/admin/login', async (c) => {
-  // 미들웨어에서 이미 인증 완료
-  return c.json({ success: true })
+// ─── 관리자 토큰 검증 ──────────────────────────────────
+app.get('/api/admin/verify', async (c) => {
+  const authHeader = c.req.header('authorization')
+  const token = authHeader?.startsWith('Bearer ')
+    ? authHeader.slice('Bearer '.length).trim()
+    : ''
+
+  if (!token) return c.json({ success: false }, 401)
+
+  const isValid = await verifyAdminToken(c.env, token)
+  return c.json({ success: isValid }, isValid ? 200 : 401)
 })
 
 // ─── 항구 목록 ───────────────────────────────────────────
@@ -365,12 +387,8 @@ app.get('/api/companies/search', async (c) => {
 })
 
 // ─── 업체 추가 ───────────────────────────────────────────
-app.post('/api/admin/companies', async (c) => {
-  const body = await c.req.json() as CompanyBody
-
-  if (!body.name || !body.sido) {
-    return c.json({ error: '업체명과 시도는 필수입니다.' }, 400)
-  }
+app.post('/api/admin/companies', zValidator('json', companySchema), async (c) => {
+  const body = c.req.valid('json')
 
   // 행정구역 유효성 검증
   const validRegion = await validateRegion(c.env.DB, body.sido, body.sigungu, body.eupmyeondong)
@@ -392,9 +410,9 @@ app.post('/api/admin/companies', async (c) => {
 })
 
 // ─── 업체 수정 ───────────────────────────────────────────
-app.put('/api/admin/companies/:id', async (c) => {
+app.put('/api/admin/companies/:id', zValidator('json', companySchema), async (c) => {
   const id = c.req.param('id')
-  const body = await c.req.json() as CompanyBody
+  const body = c.req.valid('json')
 
   // 행정구역 유효성 검증
   const validRegion = await validateRegion(c.env.DB, body.sido, body.sigungu, body.eupmyeondong)

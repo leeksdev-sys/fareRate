@@ -3,6 +3,7 @@ import styles from './RateOptions.module.css'
 interface RateOptionsProps {
     oneWay: boolean
     setOneWay: (val: boolean) => void
+    isOneWayRoute: boolean
     hazardous: boolean
     setHazardous: (val: boolean) => void
     overweight: number
@@ -12,6 +13,7 @@ interface RateOptionsProps {
 export default function RateOptions({
     oneWay,
     setOneWay,
+    isOneWayRoute,
     hazardous,
     setHazardous,
     overweight,
@@ -19,14 +21,18 @@ export default function RateOptions({
 }: RateOptionsProps) {
     return (
         <div className={styles.options}>
-            <label>
-                <input
-                    type="checkbox"
-                    checked={oneWay}
-                    onChange={(e) => setOneWay(e.target.checked)}
-                />
-                편도 운임
-            </label>
+            {isOneWayRoute ? (
+                <span className={styles.oneWayBadge}>편도 전용 노선</span>
+            ) : (
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={oneWay}
+                        onChange={(e) => setOneWay(e.target.checked)}
+                    />
+                    편도 운임
+                </label>
+            )}
             <label>
                 <input
                     type="checkbox"

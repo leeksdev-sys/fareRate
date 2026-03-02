@@ -90,7 +90,7 @@
     padding: 10px;
     background: var(--btn-secondary-bg);
     color: var(--text-dim);
-    border: 1px solid #555;
+    border: 1px solid var(--card-border);
     border-radius: var(--radius-md);
     font-size: 0.9rem;
     text-align: center;

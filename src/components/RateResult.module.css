@@ -1,31 +1,32 @@
 .resultCard {
     margin-top: var(--spacing-lg);
-    background: var(--light-bg);
-    border: 1px solid var(--light-border);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: var(--radius-lg);
-    padding: 20px;
-    box-shadow: var(--shadow-light);
+    padding: 22px;
+    box-shadow: var(--shadow-dark);
 }
 
 .resultCard h2 {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-sm);
-    color: var(--light-text);
+    font-size: 1.15rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-main);
+    font-weight: 700;
 }
 
 .distance {
-    color: var(--light-text-muted);
+    color: var(--text-dim);
     font-size: 0.85rem;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .rateLabel {
-    font-size: 0.8rem;
-    color: var(--light-text-dim);
-    margin-bottom: 10px;
-    font-weight: 500;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
 }
 
 .rateRow {
@@ -38,25 +39,27 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
+    gap: 6px;
 }
 
 .rateSize {
-    font-size: 0.85rem;
-    color: var(--light-text-dim);
-    font-weight: 500;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.05em;
 }
 
 .ratePrice {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-main);
     white-space: nowrap;
 }
 
 .rateDivider {
     width: 1px;
-    height: 48px;
-    background: var(--light-border);
+    height: 44px;
+    background: var(--card-border);
     margin: 0 var(--spacing-md);
     flex-shrink: 0;
 }
@@ -64,6 +67,10 @@
 @media (max-width: 480px) {
     .resultCard {
         margin-top: 14px;
-        padding: 14px 16px;
+        padding: 16px 18px;
+    }
+
+    .ratePrice {
+        font-size: 1.25rem;
     }
 }

@@ -15,11 +15,20 @@ if (isStandalone) {
   document.documentElement.classList.add('standalone-app')
 }
 
+const PORT_MAP: Record<string, string> = {
+  '/uwicd':      '의왕ICD',
+  '/incheon-new': '인천신항',
+  '/incheon':    '인천항',
+  '/busan-new':  '부산신항',
+  '/busan':      '부산북항',
+  '/gwangyang':  '광양항',
+}
+
 let Component: ReactElement
 if (path === '/admin') {
   Component = <Admin />
-} else if (path === '/uwicd') {
-  Component = <App port="의왕ICD" />
+} else if (PORT_MAP[path]) {
+  Component = <App port={PORT_MAP[path]} />
 } else {
   Component = <LandingPage />
 }

@@ -36,12 +36,26 @@
 /* ─── Hero Title ─── */
 .hero {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(2.4rem, 8vw, 5.2rem);
+  font-size: clamp(1.85rem, 6.16vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
   color: #fff;
-  margin: 0 0 14px;
+  margin: 0 0 20px;
+}
+
+.notice {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(250, 204, 21, 0.95);
+  margin: 0 0 48px;
+  max-width: 560px;
+  line-height: 1.6;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ─── Sub Title ─── */
@@ -96,9 +110,33 @@
 }
 
 @media (max-width: 440px) {
+  .main {
+    justify-content: flex-start;
+    padding: 28px 18px 56px;
+  }
+
+  .hero {
+    font-size: clamp(2.05rem, 8.3vw, 4rem);
+  }
+
+  .notice {
+    font-size: 0.78rem;
+    max-width: 92vw;
+    margin-bottom: 42px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
-    max-width: 320px;
+    max-width: 360px;
+    gap: 14px;
+  }
+
+  .card {
+    padding: 24px 24px 22px;
+  }
+
+  .cardName {
+    font-size: 1.65rem;
   }
 }
 
@@ -160,6 +198,29 @@
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.3);
   line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ─── Trip Type Badge ─── */
+.badgeRound {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+}
+
+.badgeOneway {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(96, 165, 250, 0.15);
+  color: rgba(147, 197, 253, 0.9);
   margin-top: 2px;
 }
 

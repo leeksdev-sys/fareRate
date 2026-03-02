@@ -24,11 +24,30 @@ export default function Admin() {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    const savedToken = sessionStorage.getItem(ADMIN_TOKEN_KEY)
-    if (savedToken) {
-      setToken(savedToken)
-      setAuthed(true)
+    const checkAuth = async () => {
+      const savedToken = sessionStorage.getItem(ADMIN_TOKEN_KEY)
+      if (!savedToken) return
+
+      try {
+        const res = await fetch(`${API_BASE}/api/admin/verify`, {
+          headers: { Authorization: `Bearer ${savedToken}` }
+        })
+        if (res.ok) {
+          const data = (await res.json()) as { success: boolean }
+          if (data.success) {
+            setToken(savedToken)
+            setAuthed(true)
+          } else {
+            sessionStorage.removeItem(ADMIN_TOKEN_KEY)
+          }
+        } else {
+          sessionStorage.removeItem(ADMIN_TOKEN_KEY)
+        }
+      } catch (err) {
+        console.error('Auth verification failed:', err)
+      }
     }
+    checkAuth()
   }, [])
 
   useEffect(() => {

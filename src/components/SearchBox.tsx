@@ -40,12 +40,14 @@ export default function SearchBox<T>({
             if (suggestions.length > 0) {
                 const idx = activeIndex >= 0 ? activeIndex : 0
                 onSelect(suggestions[idx])
+                setActiveIndex(-1)
             }
         } else if (e.key === 'Tab') {
             if (suggestions.length > 0) {
                 e.preventDefault()
                 const idx = activeIndex >= 0 ? activeIndex : 0
                 onSelect(suggestions[idx])
+                setActiveIndex(-1)
             }
         }
     }

@@ -47,17 +47,15 @@ npm run check
 
 ## 환경 변수 및 보안 설정
 
-[wrangler.toml](wrangler.toml) 의 `[vars]` 설정:
+`[wrangler.toml](wrangler.toml) 의 `[vars]` 설정:
 
 - `ALLOWED_ORIGINS`: API 허용 Origin 목록(쉼표 구분)
-- `ADMIN_TOKEN_SECRET`: 관리자 토큰 서명용 비밀키(긴 랜덤 문자열 권장)
 
 예시:
 
 ```toml
 [vars]
 ALLOWED_ORIGINS = "https://softsheet.org,https://www.softsheet.org,http://localhost:5173,http://127.0.0.1:5173"
-ADMIN_TOKEN_SECRET = "replace-with-long-random-secret"
 ```
 
 운영 환경 권장:

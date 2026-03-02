@@ -22,6 +22,7 @@ export default function App({ port }: AppProps) {
   const [companyQuery, setCompanyQuery] = useState<string>('')
   const [companySuggestions, setCompanySuggestions] = useState<Company[]>([])
   const [companyActiveIndex, setCompanyActiveIndex] = useState<number>(-1)
+  const [isSelecting, setIsSelecting] = useState<boolean>(false)
 
   const searchRegion = useCallback(
     async (q: string) => {
@@ -69,9 +70,19 @@ export default function App({ port }: AppProps) {
   }, [])
 
   useEffect(() => {
+    if (selectedRegion) {
+      setCompanySuggestions([])
+      setCompanyActiveIndex(-1)
+      return
+    }
+
+    if (isSelecting) {
+      setIsSelecting(false)
+      return
+    }
     const timer = setTimeout(() => searchCompany(companyQuery), 150)
     return () => clearTimeout(timer)
-  }, [companyQuery, searchCompany])
+  }, [companyQuery, searchCompany, isSelecting, selectedRegion])
 
   const fetchRates = useCallback(
     async (region: Region) => {
@@ -95,6 +106,7 @@ export default function App({ port }: AppProps) {
   )
 
   const selectCompany = (company: Company) => {
+    setIsSelecting(true)
     setCompanySuggestions([])
     setCompanyActiveIndex(-1)
     setCompanyQuery(company.name)
@@ -116,11 +128,13 @@ export default function App({ port }: AppProps) {
     fetchRates(region)
   }
 
+  const isOneWayRoute = rates[0]?.trip_type === '편도'
+
   const calcRate = (base: number): string => {
     let rate = base
     if (hazardous) rate *= 1.3
     if (overweight > 0) rate *= 1 + overweight * 0.1
-    if (oneWay) rate *= 0.5
+    if (oneWay && !isOneWayRoute) rate *= 0.5
     return Math.round(rate).toLocaleString()
   }
 
@@ -139,8 +153,8 @@ export default function App({ port }: AppProps) {
   }
 
   const rateColor = (): string => {
-    if (hazardous || overweight > 0) return '#dc2626'
-    return '#2563eb'
+    if (hazardous || overweight > 0) return 'var(--accent-red-hover)'
+    return 'var(--accent-blue)'
   }
 
   return (
@@ -208,6 +222,7 @@ export default function App({ port }: AppProps) {
           <RateOptions
             oneWay={oneWay}
             setOneWay={setOneWay}
+            isOneWayRoute={isOneWayRoute}
             hazardous={hazardous}
             setHazardous={setHazardous}
             overweight={overweight}
