@@ -1,25 +1,21 @@
-import type { KeyboardEvent } from 'react'
+import type { KeyboardEvent, Dispatch, SetStateAction } from 'react'
 import styles from './SearchBox.module.css'
 
-interface Suggestion {
-    [key: string]: any
-}
-
-interface SearchBoxProps<T extends Suggestion> {
+interface SearchBoxProps<T> {
     label: string
     placeholder: string
     query: string
     setQuery: (value: string) => void
     suggestions: T[]
     activeIndex: number
-    setActiveIndex: (value: (prev: number) => number) => void
+    setActiveIndex: Dispatch<SetStateAction<number>>
     onSelect: (item: T) => void
     renderSuggestion: (item: T) => React.ReactNode
     onBlur?: () => void
     autoFocus?: boolean
 }
 
-export default function SearchBox<T extends Suggestion>({
+export default function SearchBox<T>({
     label,
     placeholder,
     query,

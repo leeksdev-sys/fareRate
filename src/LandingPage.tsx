@@ -30,7 +30,7 @@ const REGIONS = [
 export default function LandingPage() {
   const handleRegionClick = (region: (typeof REGIONS)[0]) => {
     if (region.active) {
-      window.location.href = `/${region.id}`
+      window.location.assign(`/${region.id}`)
     }
   }
 

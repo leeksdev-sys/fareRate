@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check": "npm run lint && npm run build",
+    "deploy:dry": "npm run check && npx wrangler deploy --dry-run",
+    "deploy": "npm run check && npx wrangler deploy"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.6",

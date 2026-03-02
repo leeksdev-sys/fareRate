@@ -2,12 +2,18 @@ name = "uwicd"
 main = "src/worker.ts"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
+workers_dev = false
+preview_urls = false
 
 # 커스텀 도메인 라우트 (softsheet.org 도메인이 Cloudflare에 등록된 후 활성화)
 routes = [
   { pattern = "softsheet.org/*", zone_name = "softsheet.org" },
   { pattern = "www.softsheet.org/*", zone_name = "softsheet.org" }
 ]
+
+[vars]
+ALLOWED_ORIGINS = "https://softsheet.org,https://www.softsheet.org,http://localhost:5173,http://127.0.0.1:5173"
+ADMIN_TOKEN_SECRET = "change-this-to-a-long-random-secret"
 
 [assets]
 directory = "./dist"
