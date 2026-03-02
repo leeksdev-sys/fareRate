@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, shrink-to-fit=no" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="안전운임" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>안전운임 조회</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      ;(() => {
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
+        const appVersion = '20260302-2'
+        if (!isStandalone) return
+
+        const url = new URL(window.location.href)
+        if (url.searchParams.get('appv') === appVersion) return
+
+        url.searchParams.set('appv', appVersion)
+        window.location.replace(url.toString())
+      })()
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+          try {
+            const registrations = await navigator.serviceWorker.getRegistrations()
+            await Promise.all(registrations.map((registration) => registration.unregister()))
+
+            if ('caches' in window) {
+              const cacheKeys = await caches.keys()
+              await Promise.all(cacheKeys.map((key) => caches.delete(key)))
+            }
+          } catch (error) {
+            console.error('캐시 정리 실패:', error)
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

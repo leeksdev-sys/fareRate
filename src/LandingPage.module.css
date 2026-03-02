@@ -1,0 +1,174 @@
+/* ─── Page ─── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #0c0c0c;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* ─── Header ─── */
+.header {
+  padding: 28px 32px;
+}
+
+.brand {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ─── Main ─── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 64px;
+  text-align: center;
+}
+
+/* ─── Hero Title ─── */
+.hero {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 5.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 0 14px;
+}
+
+/* ─── Sub Title ─── */
+.sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #6ee87a;
+  margin-bottom: 56px;
+}
+
+/* ─── Eyebrow (기점 레이블) ─── */
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Rotating Word ─── */
+.heroWord {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.55);
+  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+.heroWord.in {
+  opacity: 1;
+  transform: translateY(0px);
+  filter: blur(0px);
+}
+
+.heroWord.out {
+  opacity: 0;
+  transform: translateY(-6px);
+  filter: blur(3px);
+}
+
+/* ─── Grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 560px;
+}
+
+@media (max-width: 440px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+}
+
+/* ─── Card ─── */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  width: 100%;
+}
+
+.card.active:hover {
+  background: #212121;
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.card.inactive {
+  cursor: not-allowed;
+}
+
+.cardLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  font-family: 'Outfit', sans-serif;
+}
+
+.card.active .cardLabel {
+  color: rgba(120, 200, 120, 0.75);
+}
+
+.cardName {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.card.inactive .cardName {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.cardDesc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ─── Footer ─── */
+.footer {
+  padding: 24px 32px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.06em;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+}

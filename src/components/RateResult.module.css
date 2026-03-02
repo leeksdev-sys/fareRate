@@ -1,0 +1,69 @@
+.resultCard {
+    margin-top: var(--spacing-lg);
+    background: var(--light-bg);
+    border: 1px solid var(--light-border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-light);
+}
+
+.resultCard h2 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--light-text);
+}
+
+.distance {
+    color: var(--light-text-muted);
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.rateLabel {
+    font-size: 0.8rem;
+    color: var(--light-text-dim);
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.rateRow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.rateItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.rateSize {
+    font-size: 0.85rem;
+    color: var(--light-text-dim);
+    font-weight: 500;
+}
+
+.ratePrice {
+    font-size: 1.25rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.rateDivider {
+    width: 1px;
+    height: 48px;
+    background: var(--light-border);
+    margin: 0 var(--spacing-md);
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .resultCard {
+        margin-top: 14px;
+        padding: 14px 16px;
+    }
+}

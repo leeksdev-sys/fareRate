@@ -1,0 +1,56 @@
+@import './styles/variables.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+html.standalone-app {
+  font-size: 14px !important;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+html.standalone-app body {
+  overflow-x: hidden;
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-blue);
+  text-decoration: inherit;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #7ab3e8;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition: background-color 0.2s, color 0.2s;
+}

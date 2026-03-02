@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#2563eb"/>
+  <text x="256" y="200" font-family="sans-serif" font-size="100" font-weight="bold" fill="white" text-anchor="middle">안전</text>
+  <text x="256" y="320" font-family="sans-serif" font-size="100" font-weight="bold" fill="white" text-anchor="middle">운임</text>
+  <text x="256" y="430" font-family="sans-serif" font-size="60" fill="#93c5fd" text-anchor="middle">🚢</text>
+</svg>

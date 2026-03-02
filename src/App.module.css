@@ -1,0 +1,102 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: var(--spacing-lg);
+    box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+    .container {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 28px;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-sm) 0;
+}
+
+.headerLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.btnBack {
+    font-size: 0.82rem;
+    color: var(--accent-blue);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.btnBack:hover {
+    opacity: 1;
+    color: var(--accent-blue);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+}
+
+.btnAdmin {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.btnAdmin:hover {
+    color: var(--text-main);
+}
+
+.section {
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.section label {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.section select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    font-size: 1.05rem;
+    background: var(--input-bg);
+    color: var(--text-main);
+    outline: none;
+}
+
+.section select:focus {
+    border-color: var(--accent-blue);
+}
+
+.btnReset {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    background: var(--btn-secondary-bg);
+    color: var(--text-dim);
+    border: 1px solid #555;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.btnReset:hover {
+    background: var(--btn-secondary-hover);
+    color: var(--text-main);
+}

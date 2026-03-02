@@ -1,0 +1,22 @@
+name = "uwicd"
+main = "src/worker.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# 커스텀 도메인 라우트 (softsheet.org 도메인이 Cloudflare에 등록된 후 활성화)
+routes = [
+  { pattern = "softsheet.org/*", zone_name = "softsheet.org" },
+  { pattern = "www.softsheet.org/*", zone_name = "softsheet.org" }
+]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "freight-rate-db"
+database_id = "2e8e3014-8d2d-4583-b563-75c16695fed3"
+
+[dev]
+port = 8787

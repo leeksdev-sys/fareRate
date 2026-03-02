@@ -1,0 +1,28 @@
+{
+  "name": "안전운임 조회",
+  "short_name": "안전운임",
+  "description": "컨테이너 화물 안전운임 조회 서비스",
+  "theme_color": "#2563eb",
+  "background_color": "#f5f7fa",
+  "display": "standalone",
+  "start_url": "/?pwa=20260302",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
